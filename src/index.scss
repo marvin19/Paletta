@@ -1112,8 +1112,29 @@ input[type="color"]::-moz-color-swatch {
     margin-bottom: 20px;
 }
 
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
 .modal-content {
     line-height: 1.5;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modal-content a {

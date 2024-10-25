@@ -77,32 +77,10 @@ const Modal = ({
             aria-modal="true"
             aria-labelledby="modal-title"
             className="modal-overlay"
-            style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100vw',
-                height: '100vh',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 1000,
-            }}
             onClick={onClose}
         >
             <div
                 className="modal-content"
-                style={{
-                    backgroundColor: '#fff',
-                    padding: '2rem',
-                    borderRadius: '8px',
-                    position: 'relative',
-                    maxWidth: '800px',
-                    width: '100%',
-                    maxHeight: '90vh',
-                    overflowY: 'auto',
-                }}
                 onClick={(e) => {
                     e.stopPropagation();
                 }}
