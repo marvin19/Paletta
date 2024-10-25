@@ -100,6 +100,8 @@ const Modal = ({
                     position: 'relative',
                     maxWidth: '800px',
                     width: '100%',
+                    maxHeight: '90vh',
+                    overflowY: 'auto',
                 }}
                 onClick={(e) => {
                     e.stopPropagation();
