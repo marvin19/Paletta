@@ -1115,3 +1115,26 @@ input[type="color"]::-moz-color-swatch {
 .modal-content {
     line-height: 1.5;
 }
+
+.modal-content a {
+    text-decoration: underline;
+}
+
+.modal-content button {
+    display: flex;
+    padding: 5px 16px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 4px;
+    background-color: transparent;
+    color: black;
+    border: 1px solid #918fa3;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: black;
+    color: white;
+}
