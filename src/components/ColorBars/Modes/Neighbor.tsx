@@ -50,7 +50,7 @@ const Neighbor = ({
             }}
         >
             {colorBars.map((color, index) => (
-                <button
+                <div
                     key={index}
                     className={`color-bar-container ${index === selectedIndex ? 'selected' : ''} ${
                         index === selectedIndex && draggedIndex !== null
@@ -58,6 +58,7 @@ const Neighbor = ({
                             : ''
                     }`}
                     tabIndex={0}
+                    role="button"
                     aria-label={`Draggable color bar with color ${color}`}
                     draggable // Enable drag-and-drop
                     ref={(el) => (colorBarRefs.current[index] = el)}
@@ -106,7 +107,7 @@ const Neighbor = ({
                                 selectedContrast={selectedContrast}
                             />
                         )}
-                </button>
+                </div>
             ))}
             <AddNewColor addColorBar={addColorBar} colorBars={colorBars} />
         </div>
