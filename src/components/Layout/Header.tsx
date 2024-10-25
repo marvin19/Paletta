@@ -55,7 +55,11 @@ const Header = ({
                 <ContrastSelectTab setSelectedContrast={setSelectedContrast} />
                 <ContrastModeTab setSelectedMode={setSelectedMode} />
                 <div className="link-and-logo">
-                    <a href="#" className="icon-wrapper">
+                    <a
+                        href="#"
+                        className="icon-wrapper"
+                        aria-label="How to use"
+                    >
                         <FontAwesomeIcon
                             icon={faQuestionCircle}
                             style={{ color: '#000000' }}
@@ -63,7 +67,7 @@ const Header = ({
                     </a>
                     <GitHubLink />
                     <PalettaLogo />
-                    <button className="burger">
+                    <button className="burger" aria-label="Open menu">
                         <FontAwesomeIcon
                             icon={isMenuOpen ? faX : faBars}
                             className="hamburger-icon"

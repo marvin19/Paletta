@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import type { KeyboardEvent } from 'react';
 
-interface UseTabNavigationProps {
+interface UseTabInteractionProps {
     selectedTab: number;
     labels: string[];
     onTabSelect: (index: number) => void;
@@ -12,11 +12,11 @@ interface UseTabNavigationProps {
     setFocusedTab: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const useTabNavigation = ({
+const useTabInteraction = ({
     selectedTab,
     labels,
     onTabSelect,
-}): UseTabNavigationProps => {
+}): UseTabInteractionProps => {
     const [focusedTab, setFocusedTab] = useState(selectedTab);
     // Store refs for each tab button to manage focus manually
     const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -80,4 +80,4 @@ const useTabNavigation = ({
     };
 };
 
-export default useTabNavigation;
+export default useTabInteraction;

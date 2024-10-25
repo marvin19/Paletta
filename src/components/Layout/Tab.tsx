@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import useTabNavigation from '../../hooks/useTabNavigation';
+import useTabInteraction from '../../hooks/useTabInteraction';
 
 interface TabProps {
     labels: string[];
@@ -15,7 +15,7 @@ const Tab = ({ labels, selectedTab, onTabSelect }: TabProps): JSX.Element => {
         getButtonClass,
         handleKeyDown,
         setFocusedTab,
-    } = useTabNavigation({
+    } = useTabInteraction({
         labels,
         selectedTab,
         onTabSelect,

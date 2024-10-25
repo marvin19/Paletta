@@ -1,7 +1,7 @@
 const PalettaLogo = (): JSX.Element => {
     return (
         <div className="logo-container">
-            <h1>Paletta</h1>
+            <h2>Paletta</h2>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="26"

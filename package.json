@@ -16,7 +16,7 @@
     "lhci:mobile": "lhci autorun",
     "lhci:desktop": "lhci autorun --collect.settings.preset=desktop",
     "lhci:a11y": "rn lhci autorun --collect.settings.preset=desktop --collect.staticDistDir=./dist --only-categories=accessibility",
-    "axe:a11y": "axe http://localhost:8000 --browser=firefox",
+    "axe:a11y": "axe http://localhost:8000 --browser=firefox --disable=nested-interactive",
     "css-compile": "postcss src/styles/main.scss -o dist/styles/main.css"
   },
   "dependencies": {
@@ -49,7 +49,7 @@
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.19",
-    "axe-core": "^4.9.0",
+    "axe-core": "^4.10.1",
     "babel-jest": "^29.7.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",

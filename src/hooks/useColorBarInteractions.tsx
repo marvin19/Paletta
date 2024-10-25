@@ -9,7 +9,7 @@ interface UseColorBarInteractionsReturnType {
     selectedIndex: number | null;
     draggedIndex: number | null;
     visibleContrastBoxIndex: number | null;
-    colorBarRefs: React.MutableRefObject<Array<HTMLDivElement | null>>;
+    colorBarRefs: React.MutableRefObject<Array<HTMLElement | null>>;
     handleKeyDown: (event: React.KeyboardEvent, index: number) => void;
     handleDragStart: (index: number) => void;
     handleDragEnter: (index: number) => void;
@@ -31,7 +31,7 @@ interface UseColorBarInteractionsReturnType {
  * @returns {number | null} selectedIndex - The index of the currently selected color bar, or null if none is selected.
  * @returns {number | null} draggedIndex - The index of the color bar currently being dragged, or null if none is being dragged.
  * @returns {number | null} visibleContrastBoxIndex - The index of the color bar for which the contrast box is visible, or null if none is visible.
- * @returns {React.MutableRefObject<HTMLDivElement[]>} colorBarRefs - A ref object to keep track of color bar elements.
+ * @returns {React.MutableRefObject<HTMLElement[]>} colorBarRefs - A ref object to keep track of color bar elements.
  * @returns {(event: React.KeyboardEvent, index: number) => void} handleKeyDown - Function to handle keyboard events for navigation and selection.
  * @returns {(index: number) => void} handleDragStart - Function to initiate dragging of a color bar.
  * @returns {(index: number) => void} handleDragEnter - Function to handle entering a drag target (another color bar).
@@ -49,7 +49,7 @@ export const useColorBarInteractions = ({
     const [visibleContrastBoxIndex, setVisibleContrastBoxIndex] = useState<
         number | null
     >(null); // Index of the color bar for which contrast box is visible
-    const colorBarRefs = useRef<Array<HTMLDivElement | null>>([]); // Keeps track of references to the DOM elements of the color bars
+    const colorBarRefs = useRef<Array<HTMLElement | null>>([]); // Keeps track of references to the DOM elements of the color bars
 
     // Runs when the `selectedIndex` changes.
     useEffect(() => {
@@ -103,7 +103,7 @@ export const useColorBarInteractions = ({
             } else {
                 setDraggedIndex(null); // Drop it down
                 setSelectedIndex(null); // Remove focus after dropping
-                (event.currentTarget as HTMLDivElement).blur();
+                (event.currentTarget as HTMLElement).blur();
             }
         }
     };
