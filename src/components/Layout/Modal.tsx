@@ -98,7 +98,7 @@ const Modal = ({
                     padding: '2rem',
                     borderRadius: '8px',
                     position: 'relative',
-                    maxWidth: '500px',
+                    maxWidth: '800px',
                     width: '100%',
                 }}
                 onClick={(e) => {
@@ -106,7 +106,6 @@ const Modal = ({
                 }}
                 ref={modalRef}
             >
-                <h2 id="modal-title">Modal Title</h2>
                 <button
                     onClick={onClose}
                     aria-label="Close modal"

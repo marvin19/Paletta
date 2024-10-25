@@ -124,10 +124,10 @@ a {
     text-decoration: none;
 }
 
-ul {
+/*ul {
     list-style-type: none;
     padding: 0;
-}
+}*/
 
 .img {
     width: 100%;
@@ -1108,3 +1108,10 @@ input[type="color"]::-moz-color-swatch {
     font-weight: 700;
 }
 
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.modal-content {
+    line-height: 1.5;
+}
