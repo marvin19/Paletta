@@ -4,6 +4,8 @@ import onlyLogo from '../../assets/highcharts-only-logo.svg';
 import ContrastSelectTab from '../Base/ContrastSelectTab';
 import ContrastModeTab from '../Base/ContrastModeTab';
 import GitHubLink from './GitHubLink';
+import HowToUseModal from './HowToUseModal';
+import Modal from './Modal';
 import PalettaLogo from './PalettaLogo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -22,9 +24,18 @@ const Header = ({
     setSelectedMode,
 }: HeaderProps): JSX.Element => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleMenu = (): void => {
         setIsMenuOpen(!isMenuOpen);
+    };
+
+    const openModal = (): void => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = (): void => {
+        setIsModalOpen(false);
     };
 
     // Close the menu if the window is resized above 767px
@@ -55,8 +66,8 @@ const Header = ({
                 <ContrastSelectTab setSelectedContrast={setSelectedContrast} />
                 <ContrastModeTab setSelectedMode={setSelectedMode} />
                 <div className="link-and-logo">
-                    <a
-                        href="#"
+                    <button
+                        onClick={openModal}
                         className="icon-wrapper"
                         aria-label="How to use"
                     >
@@ -64,7 +75,7 @@ const Header = ({
                             icon={faQuestionCircle}
                             style={{ color: '#000000' }}
                         />
-                    </a>
+                    </button>
                     <GitHubLink />
                     <PalettaLogo />
                     <button className="burger" aria-label="Open menu">
@@ -85,6 +96,9 @@ const Header = ({
                     <ContrastModeTab setSelectedMode={setSelectedMode} />
                 </div>
             )}
+            <Modal isOpen={isModalOpen} onClose={closeModal}>
+                <HowToUseModal />
+            </Modal>
         </div>
     );
 };
