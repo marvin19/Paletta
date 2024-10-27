@@ -645,7 +645,7 @@ li {
     background-color: transparent; /* Default background color */
     color: black; /* Default text color */
     border: none; /* Remove button border */
-    cursor: pointer; /* Pointer cursor on hover */
+        cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and text color */
 }
 
@@ -659,6 +659,7 @@ li {
 .contrast-mode-tabs button.active {
     background-color: black; /* Active background color */
     color: white; /* Active text color */
+    border: 2px solid white;
 }
 
 label {
@@ -1158,4 +1159,22 @@ input[type="color"]::-moz-color-swatch {
 .modal-content button:hover {
     background-color: black;
     color: white;
+}
+
+
+/* Focus indicators */
+:focus {
+    outline: 2px solid rgb(0, 104, 173);
+    padding: 5px;
+    background-color: var(--focus-background-color);
+}
+
+.icon-wrapper:focus {
+    outline: 2px solid rgb(0, 104, 173);
+    padding: 10px 3px;
+    background-color: var(--focus-background-color);
+}
+
+.btn-white-border {
+    border: 2px solid white;
 }
