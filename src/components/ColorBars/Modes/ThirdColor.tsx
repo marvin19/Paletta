@@ -10,14 +10,12 @@ interface ThirdColorProps {
     onColorChange?: (colors: string[]) => void;
     selectedContrast: number;
     selectedMode?: 'all' | 'third' | 'neighbor';
-    parentClass: string;
 }
 
 const ThirdColor: React.FC<ThirdColorProps> = ({
     onColorChange,
     selectedContrast,
     selectedMode,
-    parentClass,
 }) => {
     const [colors, setColors] = useState<string[]>(defaultColors);
     const [buttonClicked, setButtonClicked] = useState<boolean>(false);
@@ -36,7 +34,7 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
     };
 
     return (
-        <div className={`color-bars ${parentClass}`}>
+        <div className="color-bars">
             <div className="color-bar-container">
                 <ColorBar
                     color={colors[0]}

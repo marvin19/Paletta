@@ -1,11 +1,11 @@
 import ColorBar from '../ColorBar';
 import AddNewColor from '../AddNewColor';
+import { getParentClassForMode } from '../../../utils';
 
 interface CompareAllProps {
     colorBars: string[];
     selectedMode: 'all' | 'third' | 'neighbor'; // Narrowing down the type
     selectedContrast: number;
-    parentClass: string;
     addColorBar: () => void;
     handleColorChange: (index: number, newColor: string) => void;
     removeColorBar: (index: number) => void;
@@ -18,12 +18,13 @@ const CompareAll = ({
     addColorBar,
     handleColorChange,
     removeColorBar,
-    parentClass,
 }: CompareAllProps): JSX.Element => {
+    const parentClass = getParentClassForMode(selectedMode);
+
     return (
         <div className={`color-bars ${parentClass}`}>
             {colorBars.map((color, index) => (
-                <div className="color-bar-container" key={index}>
+                <div className="color-bar-container" key={index} role="button">
                     <ColorBar
                         color={color}
                         selectedMode={selectedMode}
