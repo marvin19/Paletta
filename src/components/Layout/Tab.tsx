@@ -37,7 +37,7 @@ const Tab = ({ labels, selectedTab, onTabSelect }: TabProps): JSX.Element => {
                     aria-selected={selectedTab === index}
                     aria-controls={`tabpanel-${index}`}
                     id={`tab-${index}`}
-                    className={getButtonClass(index)}
+                    className={getButtonClass(index) + ' btn-white-border'}
                     ref={(el) => {
                         tabRefs.current[index] = el;
                     }}

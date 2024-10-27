@@ -25,6 +25,7 @@ const Header = ({
 }: HeaderProps): JSX.Element => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const toggleMenu = (): void => {
         setIsMenuOpen(!isMenuOpen);
@@ -41,7 +42,8 @@ const Header = ({
     // Close the menu if the window is resized above 767px
     useEffect(() => {
         const handleResize = (): void => {
-            if (window.innerWidth > 767) {
+            setWindowWidth(window.innerWidth);
+            if (windowWidth > 767) {
                 setIsMenuOpen(false);
             }
         };
@@ -50,7 +52,7 @@ const Header = ({
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    }, [windowWidth]);
 
     return (
         <div className="banner">
@@ -78,7 +80,13 @@ const Header = ({
                     </button>
                     <GitHubLink />
                     <PalettaLogo />
-                    <button className="burger" aria-label="Open menu">
+                    <button
+                        className="burger"
+                        aria-label="Open menu"
+                        style={{
+                            display: windowWidth < 768 ? 'block' : 'none',
+                        }}
+                    >
                         <FontAwesomeIcon
                             icon={isMenuOpen ? faX : faBars}
                             className="hamburger-icon"
