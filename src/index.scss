@@ -70,6 +70,16 @@ h5 {
     border: 0;
 }
 
+/*********** Variables ***********/
+/* Screen sizes TODO*/ 
+:root {
+    --sm: 576px;
+    --md: 768px;
+    --lg: 992px;
+    --xl: 1200px;
+    --2xl: 1400px;
+}
+
 /************ Header ****************/
 .banner {
     display: flex;
@@ -113,6 +123,86 @@ h5 {
     display: none;
 }
 
+/* Tabs */ 
+.tabs {
+    display: flex;
+    align-items: flex-start;
+    gap: 34px;
+}
+
+.contrast-tabs,
+.contrast-mode-tabs {
+    display: flex;
+    height: 38px;
+    padding: 4px;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 6px;
+    border: 1px solid #918fa3;
+}
+
+.contrast-tabs button,
+.contrast-mode-tabs button {
+    display: flex;
+    padding: 0px 16px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 4px;
+    background-color: transparent;
+    color: black; 
+    border: none; 
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+.contrast-tabs button:hover,
+.contrast-mode-tabs button:hover {
+    background-color: #757575;
+    color: white;
+}
+
+.contrast-tabs button.active,
+.contrast-mode-tabs button.active {
+    background-color: black;
+    color: white; 
+    border: 2px solid white;
+}
+
+/* Links and logo to the right side */
+
+.link-and-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-wrapper{
+    display: flex;
+    align-items: center;
+    height: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 50%;
+}
+
+.icon-wrapper:hover {
+    transform: scale(1.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.burger:hover {
+    transform: scale(1.3);
+    padding: 2px;
+
+}
+
+.icon-wrapper svg,
+.icon-wrapper .fa-question-circle {
+    width: 16px;
+    height: 16px;
+}
+
+
 /* Mobile menu */
 .hamburger-icon {
     display: none;
@@ -120,6 +210,38 @@ h5 {
     cursor: pointer;
 }
 
+label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 2px;
+}
+
+.contrast-select-dropdown,
+.contrast-mode-dropdown {
+    width: 150px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    color: #212529;
+    appearance: none;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23343a40" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.contrast-select-dropdown,
+.contrast-mode-dropdown {
+    width: 150px;
+}
+
+/* Media queries */
 /* After 992px, hide the default logo and show the new one */
 @media (max-width: 992px) and (min-width: 768px) {
     .logo {
@@ -139,7 +261,6 @@ h5 {
 
 }
 
-/* Media queries */
 @media (max-width: 767px) {
 
     label {
@@ -233,6 +354,20 @@ h5 {
     }
 }
 
+@media screen and (min-width: 1350px) {
+    .contrast-select-dropdown,
+    .contrast-mode-dropdown {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1349px) {
+    .contrast-tabs,
+    .contrast-mode-tabs {
+        display: none;
+    }
+}
+
 
 /******** Palette General Colorbar styles **********/
 
@@ -272,127 +407,6 @@ h5 {
 /* Color bars */ 
 /* Margins */ 
 
-
-.tabs {
-    display: flex;
-    align-items: flex-start;
-    gap: 34px;
-}
-
-.contrast-tabs,
-.contrast-mode-tabs {
-    display: flex;
-    height: 38px;
-    padding: 4px;
-    align-items: flex-start;
-    gap: 10px;
-    border-radius: 6px;
-    border: 1px solid #918fa3;
-}
-
-.contrast-tabs button,
-.contrast-mode-tabs button {
-    display: flex;
-    padding: 0px 16px;
-    justify-content: center;
-    align-items: center;
-    align-self: stretch;
-    border-radius: 4px;
-    background-color: transparent; /* Default background color */
-    color: black; /* Default text color */
-    border: none; /* Remove button border */
-        cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and text color */
-}
-
-.contrast-tabs button:hover,
-.contrast-mode-tabs button:hover {
-    background-color: #757575; /* Hover background color */
-    color: white; /* Hover text color */
-}
-
-.contrast-tabs button.active,
-.contrast-mode-tabs button.active {
-    background-color: black; /* Active background color */
-    color: white; /* Active text color */
-    border: 2px solid white;
-}
-
-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-right: 2px;
-}
-
-.contrast-select-dropdown,
-.contrast-mode-dropdown {
-    width: 150px;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    border: 1px solid #ced4da;
-    background-color: #fff;
-    color: #212529;
-    appearance: none;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23343a40" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 16px 12px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    cursor: pointer; /* Change cursor to pointer */
-}
-
-.contrast-select-dropdown,
-.contrast-mode-dropdown {
-    width: 150px;
-}
-
-@media screen and (min-width: 1350px) {
-    .contrast-select-dropdown,
-    .contrast-mode-dropdown {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 1349px) {
-    .contrast-tabs,
-    .contrast-mode-tabs {
-        display: none;
-    }
-}
-
-.link-and-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.icon-wrapper{
-    display: flex;
-    align-items: center;
-    height: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 50%;
-}
-
-.icon-wrapper:hover {
-    transform: scale(1.3);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.burger:hover {
-    transform: scale(1.3);
-    padding: 2px;
-
-}
-
-.icon-wrapper svg,
-.icon-wrapper .fa-question-circle {
-    width: 16px;
-    height: 16px;
-}
 
 /* Color bar container */
 .color-bar-container {
