@@ -89,7 +89,7 @@ const Header = ({
                     >
                         <FontAwesomeIcon
                             icon={isMenuOpen ? faX : faBars}
-                            className="hamburger-icon"
+                            className="burger-icon"
                             onClick={toggleMenu}
                             style={{ color: '#000000' }}
                         />
