@@ -3,6 +3,7 @@ import CompareAll from './Modes/CompareAll';
 import ThirdColor from './Modes/ThirdColor';
 import Neighbor from './Modes/Neighbor';
 import useColorGeneration from '../../hooks/useColorGeneration';
+import { getParentClassForMode } from '../../utils';
 
 interface ColorBarModesProps {
     selectedContrast: number;
@@ -21,11 +22,14 @@ const ColorBarModes = ({
         setColorBars,
     } = useColorGeneration();
 
+    const parentClass = getParentClassForMode(selectedMode);
+
     const componentMapping: Record<string, JSX.Element> = {
         third: (
             <ThirdColor
                 selectedContrast={selectedContrast}
                 selectedMode={selectedMode}
+                parentClass={parentClass}
             />
         ) as JSX.Element,
         all: (
@@ -36,6 +40,7 @@ const ColorBarModes = ({
                 addColorBar={addColorBar}
                 handleColorChange={handleColorChange}
                 removeColorBar={removeColorBar}
+                parentClass={parentClass}
             />
         ),
         neighbor: (
@@ -47,6 +52,7 @@ const ColorBarModes = ({
                 handleColorChange={handleColorChange}
                 removeColorBar={removeColorBar}
                 addColorBar={addColorBar}
+                parentClass={parentClass}
             />
         ),
     };

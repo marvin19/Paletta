@@ -7,6 +7,7 @@ interface NeighborProps {
     colorBars: string[];
     selectedMode: 'all' | 'third' | 'neighbor';
     selectedContrast: number;
+    parentClass: string;
     handleColorChange: (index: number, newColor: string) => void;
     removeColorBar: (index: number) => void;
     addColorBar: () => void;
@@ -21,6 +22,7 @@ const Neighbor = ({
     removeColorBar,
     addColorBar,
     setColorBars,
+    parentClass,
 }: NeighborProps): JSX.Element => {
     const {
         selectedIndex,
@@ -44,7 +46,7 @@ const Neighbor = ({
 
     return (
         <div
-            className="color-bars"
+            className={`color-bars ${parentClass}`}
             onClick={() => {
                 setSelectedIndex(null);
             }}
