@@ -71,19 +71,19 @@ h5 {
 }
 
 .mb-20 {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 /* Focus indicators */
 :focus {
     outline: 2px solid rgb(0, 104, 173);
-    padding: 5px;
+    padding: 0.313rem;
     background-color: var(--focus-background-color);
 }
 
 .icon-wrapper:focus {
     outline: 2px solid rgb(0, 104, 173);
-    padding: 10px 3px;
+    padding: 0.625rem 0.188rem;
     background-color: var(--focus-background-color);
 }
 
@@ -104,21 +104,21 @@ h5 {
 /************ Header ****************/
 .banner {
     display: flex;
-    padding-top: 18px;
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-top: 1.125rem;
+    padding-left: 1.125rem;
+    padding-right: 1.125rem;
     padding-bottom: 2ch;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 10px;
+    gap: 0.625rem;
     align-self: stretch;
     border-radius: 5px;
 }
 
 .inside-banner {
     display: flex;
-    padding: 30px 31px;
+    padding: 1.875rem 1.938rem;
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
@@ -130,14 +130,14 @@ h5 {
 .logo-img {
     display: flex;
     align-items: center;
-    gap: 44px;
+    gap: 2.75rem;
 }
 
 .logo {
     display: flex;
-    width: 181px;
+    width: 11.313rem;
     align-items: center;
-    gap: 16px;
+    gap:1rem;
 }
 
 .only-logo {
@@ -148,16 +148,16 @@ h5 {
 .tabs {
     display: flex;
     align-items: flex-start;
-    gap: 34px;
+    gap: 2.125rem;
 }
 
 .contrast-tabs,
 .contrast-mode-tabs {
     display: flex;
-    height: 38px;
-    padding: 4px;
+    height: 2.375rem;
+    padding: 0.25rem;
     align-items: flex-start;
-    gap: 10px;
+    gap: 0.625rem;
     border-radius: 6px;
     border: 1px solid #918fa3;
 }
@@ -165,7 +165,7 @@ h5 {
 .contrast-tabs button,
 .contrast-mode-tabs button {
     display: flex;
-    padding: 0px 16px;
+    padding: 0px 1rem;
     justify-content: center;
     align-items: center;
     align-self: stretch;
@@ -194,13 +194,13 @@ h5 {
 .link-and-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .icon-wrapper{
     display: flex;
     align-items: center;
-    height: 16px;
+    height: 1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 50%;
 }
@@ -212,8 +212,8 @@ h5 {
 
 .icon-wrapper svg,
 .icon-wrapper .fa-question-circle {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
 }
 
 .link-and-logo h1 {
@@ -224,19 +224,19 @@ h5 {
     font-size: 1.309rem;
     font-style: italic;
     font-weight: 600;
-    line-height: 38.949px;
+    line-height: 2.434rem;
     text-transform: uppercase;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .header-container svg {
-    width: 26px;
-    height: 29px;
+    width: 1.625rem;
+    height: 1.813rem;
 }
 
 
@@ -249,19 +249,19 @@ h5 {
 
 .burger:hover {
     transform: scale(1.3);
-    padding: 2px;
+    padding: 0.125rem;
 
 }
 
 label {
     font-size: 0.8rem;
     font-weight: 600;
-    margin-right: 2px;
+    margin-right: 0.125rem;
 }
 
 .contrast-select-dropdown,
 .contrast-mode-dropdown {
-    width: 150px;
+    width: 9.375rem;
     padding: 0.5rem;
     font-size: 1rem;
     border-radius: 0.25rem;
@@ -272,7 +272,7 @@ label {
     background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="%23343a40" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>');
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
-    background-size: 16px 12px;
+    background-size: 1rem 0.75rem;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -281,7 +281,7 @@ label {
 
 .contrast-select-dropdown,
 .contrast-mode-dropdown {
-    width: 150px;
+    width: 9.375rem;
 }
 
 /* Media queries */
@@ -293,9 +293,9 @@ label {
 
     .only-logo {
         display: flex;
-        width: 35px;
+        width: 2.188rem;
         align-items: center;
-        gap: 16px;
+        gap: 1rem;
     }
 
     h1 {
@@ -330,9 +330,9 @@ label {
     .dropdown-menu {
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 0.625rem;
         background-color: #f6f8ff;
-        padding: 10px;
+        padding: 0.625rem;
         border-radius: 8px;
         width: 100%;
     }
@@ -360,7 +360,7 @@ label {
     }
     .only-logo {
         display: flex;
-        width: 35px;
+        width: 2.188rem;
     }
     h1 {
         display: none;
@@ -372,7 +372,7 @@ label {
     }
 
     .dropdown-menu label {
-        margin-right: 10px;
+        margin-right: 0.625rem;
 
     }
 }
@@ -380,7 +380,7 @@ label {
 @media (min-width: 768px) and (max-width: 1349px) {
     .contrast-select-dropdown,
     .contrast-mode-dropdown {
-        width: 150px;
+        width: 9.375rem;
     }
 
     .contrast-tabs,
@@ -443,7 +443,7 @@ label {
 
 .modal-content button {
     display: flex;
-    padding: 5px 16px;
+    padding:0.313rem 1rem;
     justify-content: center;
     align-items: center;
     align-self: stretch;
@@ -479,14 +479,14 @@ label {
 }
 
 .contrast-ratio-box-text p {
-    padding-right: 5px;
+    padding-right:0.313rem;
 }
 
 .check-text {
     display: flex;
     align-items: center;
-    padding-right: 10px;
-    padding-left: 5px;
+    padding-right: 0.625rem;
+    padding-left:0.313rem;
 }
 
 .all-contrast-label {
@@ -507,13 +507,13 @@ label {
 .contrast-row {
     display: flex;
     align-items: center;
-    gap: 8px; 
-    margin-bottom: 8px;
+    gap: 0.5rem; 
+    margin-bottom: 0.5rem;
 }
 
 .checker {
     background-color: white;
-    padding: 10px 10px;
+    padding: 0.625rem 0.625rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -531,7 +531,7 @@ label {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap:0.375rem;
     align-self: stretch;
 }
 
@@ -551,8 +551,8 @@ label {
 .color-bars {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
+    gap: 1.25rem;
+    padding: 1.25rem;
     align-items: flex-start;
     position: relative;
     user-select: none;
@@ -570,14 +570,14 @@ label {
 
 .color-bar-outer {
     border-radius: 10px;
-    width: 150px;
-    height: 300px;
+    width: 9.375rem;
+    height: 18.75rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 15px;
+    padding: 0.938rem;
     color: white;
 }
 
@@ -596,7 +596,7 @@ label {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap:0.375rem;
     align-self: stretch;
     width: 100%;
 }
@@ -604,14 +604,14 @@ label {
 /* Remove color */
 .remove-color {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0.625rem;
+    right: 0.625rem;
     background: transparent;
     border: none;
     cursor: pointer;
     color: white;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 5px;
+    padding:0.313rem;
 }
 
 .remove-color:hover {
@@ -624,8 +624,8 @@ label {
     border-radius: 10px;
     background: transparent;
     cursor: pointer;
-    width: 150px;
-    height: 300px;
+    width: 9.375rem;
+    height: 18.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -656,7 +656,7 @@ label {
     cursor: default;
     color: #999;
     text-align: center;
-    padding: 10px;
+    padding: 0.625rem;
     border: none;
     pointer-events: none;
     width: 100%;
@@ -671,8 +671,8 @@ label {
 input[type="color"] {
     border: 1px solid #000;
     border-radius: 5px;
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     padding: 0;
     cursor: pointer;
 }
@@ -683,8 +683,8 @@ input[type="color"] {
     -moz-appearance: none;
     appearance: none;
     border: none;
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     cursor: pointer;
     padding: 0;
 }
@@ -721,7 +721,7 @@ input[type="color"]::-moz-color-swatch {
 }
 
 .color-picker {
-    margin-right: 10px;
+    margin-right: 0.625rem;
 
 }
 
@@ -782,8 +782,8 @@ input[type="color"]::-moz-color-swatch {
 /* Contrast box */
 .small-color-box {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     vertical-align: middle;
     border: 1px solid black;
     border-radius: 3px;
@@ -795,14 +795,14 @@ input[type="color"]::-moz-color-swatch {
     }
     .color-bar-outer {
         flex: 0 0 auto;
-        margin-bottom: 10px;
-        width: 200px;
-        min-height: 350px;
+        margin-bottom: 0.625rem;
+        width: 12.5rem;
+        min-height: 21.875rem;
         height: auto;
     }
 
     .color-picker-container {
-        margin: 10px auto;
+        margin: 0.625rem auto;
     }
 }
 
