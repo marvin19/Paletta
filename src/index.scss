@@ -15,7 +15,7 @@
 }
 
 html {
-    font-size: 16px; /* 16px */
+    font-size: 1rem; /* 16px */
 }
 
 body {
@@ -221,7 +221,7 @@ h5 {
     color: #000;
     text-align: center;
     /*font-family: 'IBM Plex Sans Var';*/
-    font-size: 20.95px;
+    font-size: 1.309rem;
     font-style: italic;
     font-weight: 600;
     line-height: 38.949px;
@@ -243,7 +243,7 @@ h5 {
 /* Mobile menu */
 .burger-icon {
     display: none;
-    font-size: 24px;
+    font-size: 1.5rem;
     cursor: pointer;
 }
 
@@ -490,7 +490,7 @@ label {
 }
 
 .all-contrast-label {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: black;
     margin: 0;
 }
@@ -536,12 +536,12 @@ label {
 }
 
 .contrast-text {
-    font-size: 18px; //24px
+    font-size: 1.125rem; //24px
     font-weight: bold;
 }
 
 .contrast-text-label {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: black;
     text-align: center;
     margin-top: auto;
@@ -642,7 +642,7 @@ label {
     height: 100%;
     border: none;
     background: transparent;
-    font-size: 16px;
+    font-size: 1rem;
     color: #ffffff;
     display: flex;
     align-items: center;
