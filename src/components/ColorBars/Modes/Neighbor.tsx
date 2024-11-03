@@ -34,6 +34,17 @@ const Neighbor = ({
     } = useColorBarInteractions({ colorBars, setColorBars });
 
     const handleClick = (index: number, event: React.MouseEvent): void => {
+        // Check if the event originated from the color input or its parent container
+        const isColorPickerClicked =
+            event.target instanceof HTMLElement &&
+            (event.target.tagName === 'INPUT' ||
+                event.target.closest('.color-picker-container'));
+
+        if (isColorPickerClicked !== undefined) {
+            // Prevent the parent click from being triggered when ColorPicker is clicked
+            return;
+        }
+
         if (draggedIndex === null) {
             setSelectedIndex(null); // This removes focus
             (event.currentTarget as HTMLDivElement).blur();
