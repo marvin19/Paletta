@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/Layout/Header';
 import Palette from './components/Containers/Palette';
+import SkiptoContent from './components/Layout/SkiptoContent';
 
 const App: React.FC = (): React.ReactElement | null => {
     const [selectedContrast, setSelectedContrast] = useState<number>(3.0);
@@ -9,7 +10,8 @@ const App: React.FC = (): React.ReactElement | null => {
     >('neighbor');
 
     return (
-        <main>
+        <>
+            <SkiptoContent />
             <Header
                 setSelectedContrast={setSelectedContrast}
                 setSelectedMode={setSelectedMode}
@@ -18,7 +20,7 @@ const App: React.FC = (): React.ReactElement | null => {
                 selectedContrast={selectedContrast}
                 selectedMode={selectedMode}
             />
-        </main>
+        </>
     );
 };
 
