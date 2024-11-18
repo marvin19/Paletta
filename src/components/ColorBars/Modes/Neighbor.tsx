@@ -109,9 +109,9 @@ const Neighbor = ({
                     {/* Only show the contrast box when not dragging and in 'neighbor' mode */}
                     {/* Show the contrast box unless the current color bar or its previous neighbor should hide it */}
                     {selectedMode === 'neighbor' &&
-                        index < colorBars.length - 1 && // Ensure no contrast box on the last bar
-                        draggedIndex !== index && // Hide the contrast box for the dragged bar
-                        draggedIndex !== index + 1 && ( // Hide the contrast box for the previous bar (index + 1 is the previous one)
+                        index < colorBars.length - 1 && ( // Ensure no contrast box on the last bar
+                            /* draggedIndex !== index && // Hide the contrast box for the dragged bar
+                        draggedIndex !== index + 1 && ( */ // Hide the contrast box for the previous bar (index + 1 is the previous one)
                             <ContrastBox
                                 leftColor={colorBars[index]}
                                 rightColor={colorBars[index + 1]}
