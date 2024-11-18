@@ -55,7 +55,7 @@ const Header = ({
     }, [windowWidth]);
 
     return (
-        <div className="banner">
+        <header className="banner">
             <div className="inside-banner">
                 <div className="logo-img">
                     <img src={logo} className="logo" alt="Highcharts logo" />
@@ -107,7 +107,7 @@ const Header = ({
             <Modal isOpen={isModalOpen} onClose={closeModal}>
                 <HowToUseModal />
             </Modal>
-        </div>
+        </header>
     );
 };
 
