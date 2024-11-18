@@ -87,6 +87,12 @@ h5 {
     background-color: var(--focus-background-color);
 }
 
+input[type="color"]:focus {
+    border: 2px solid white;
+    outline: 2px solid black;
+    //margin: 0.313rem;
+}
+
 .btn-white-border {
     border: 2px solid white;
 }
