@@ -76,8 +76,11 @@ const Neighbor = ({
                     onClick={(event) => {
                         handleClick(index, event);
                     }}
-                    onFocus={() => {
-                        setSelectedIndex(index);
+                    onFocus={(event) => {
+                        // Only if div is focused and not the input field or button
+                        if (event.target === event.currentTarget) {
+                            setSelectedIndex(index);
+                        }
                     }}
                     onKeyDown={(event) => {
                         handleKeyDown(event, index);
