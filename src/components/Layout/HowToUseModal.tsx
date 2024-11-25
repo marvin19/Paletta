@@ -93,7 +93,7 @@ const HowToUseModal = (): JSX.Element => {
                 Use this tool to create acceessible and visually appealing color
                 combinations. If you find a bug or have a good idea, please
                 reach out on{' '}
-                <a href="https://github.com/marvin19/AccessiPalette">GitHub</a>
+                <a href="https://github.com/marvin19/Paletta">GitHub</a>
             </p>
         </>
     );
