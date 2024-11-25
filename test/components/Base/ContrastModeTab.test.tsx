@@ -8,7 +8,7 @@ jest.mock('../../../src/hooks/useTabSelection');
 
 describe('ContrastModeTab', () => {
     const mockSetSelectedMode = jest.fn();
-    const labels = ['Compare all', 'Only adjacents', 'Find third color'];
+    const labels = ['Compare all', 'Adjacent colors', 'Find third color'];
 
     beforeEach(() => {
         jest.clearAllMocks();
@@ -82,7 +82,7 @@ describe('ContrastModeTab', () => {
         render(<ContrastModeTab setSelectedMode={mockSetSelectedMode} />);
 
         // Click on the second tab
-        const secondTab = screen.getByText('Only adjacents');
+        const secondTab = screen.getByText('Adjacent colors');
         fireEvent.click(secondTab);
 
         // Ensure the tab select function is called

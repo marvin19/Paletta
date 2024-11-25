@@ -22,7 +22,7 @@ const HowToUseModal = (): JSX.Element => {
             <div className="mb-20">
                 <h3>Modes of operation</h3>
                 <p>
-                    There are three modes of operation: Only adjacents, Compare
+                    There are three modes of operation: Adjacent colors, Compare
                     All and Find Third Color
                 </p>
             </div>

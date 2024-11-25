@@ -19,7 +19,7 @@ const ContrastModeTab = ({
         setSelectedMode(selectedMode);
     }, [selectedMode, setSelectedMode]);
 
-    const labels = ['Compare all', 'Only adjacents', 'Find third color'];
+    const labels = ['Compare all', 'Adjacent colors', 'Find third color'];
 
     return isDropdown ? (
         <Dropdown
