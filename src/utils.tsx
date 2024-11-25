@@ -156,8 +156,8 @@ export const generateThirdContrastColor = (
  */
 
 export const getParentClassForMode = (selectedMode?: string): string => {
-    if (selectedMode === 'neighbor') {
-        return 'neighbor';
+    if (selectedMode === 'adjacent') {
+        return 'adjacent';
     } else if (selectedMode === 'all') {
         return 'all';
     } else if (selectedMode === 'third') {

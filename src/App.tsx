@@ -6,8 +6,8 @@ import SkiptoContent from './components/Layout/SkiptoContent';
 const App: React.FC = (): React.ReactElement | null => {
     const [selectedContrast, setSelectedContrast] = useState<number>(3.0);
     const [selectedMode, setSelectedMode] = useState<
-        'all' | 'third' | 'neighbor'
-    >('neighbor');
+        'all' | 'third' | 'adjacent'
+    >('adjacent');
 
     return (
         <>

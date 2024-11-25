@@ -3,9 +3,9 @@ import ColorBar from '../ColorBar';
 import ContrastBox from '../ContrastBox';
 import { useColorBarInteractions } from '../../../hooks/useColorBarInteractions';
 
-interface NeighborProps {
+interface AdjacentProps {
     colorBars: string[];
-    selectedMode: 'all' | 'third' | 'neighbor';
+    selectedMode: 'all' | 'third' | 'adjacent';
     selectedContrast: number;
     handleColorChange: (index: number, newColor: string) => void;
     removeColorBar: (index: number) => void;
@@ -13,7 +13,7 @@ interface NeighborProps {
     setColorBars: (newColorBars: string[]) => void;
 }
 
-const Neighbor = ({
+const Adjacent = ({
     colorBars,
     selectedMode,
     selectedContrast,
@@ -21,7 +21,7 @@ const Neighbor = ({
     removeColorBar,
     addColorBar,
     setColorBars,
-}: NeighborProps): JSX.Element => {
+}: AdjacentProps): JSX.Element => {
     const {
         selectedIndex,
         draggedIndex,
@@ -109,9 +109,9 @@ const Neighbor = ({
                         allColors={colorBars}
                         selectedContrast={selectedContrast}
                     />
-                    {/* Only show the contrast box when not dragging and in 'neighbor' mode */}
-                    {/* Show the contrast box unless the current color bar or its previous neighbor should hide it */}
-                    {selectedMode === 'neighbor' &&
+                    {/* Only show the contrast box when not dragging and in 'adjacent' mode */}
+                    {/* Show the contrast box unless the current color bar or its previous adjacent should hide it */}
+                    {selectedMode === 'adjacent' &&
                         index < colorBars.length - 1 && ( // Ensure no contrast box on the last bar
                             /* draggedIndex !== index && // Hide the contrast box for the dragged bar
                         draggedIndex !== index + 1 && ( */ // Hide the contrast box for the previous bar (index + 1 is the previous one)
@@ -127,4 +127,4 @@ const Neighbor = ({
         </div>
     );
 };
-export default Neighbor;
+export default Adjacent;

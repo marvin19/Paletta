@@ -5,7 +5,7 @@ import useTabSelection from '../../hooks/useTabSelection';
 import { useEffect } from 'react';
 
 interface ContrastModeTabProps {
-    setSelectedMode: (value: 'all' | 'neighbor' | 'third') => void; // Updated to the union type
+    setSelectedMode: (value: 'all' | 'adjacent' | 'third') => void; // Updated to the union type
 }
 
 const ContrastModeTab = ({
@@ -19,7 +19,7 @@ const ContrastModeTab = ({
         setSelectedMode(selectedMode);
     }, [selectedMode, setSelectedMode]);
 
-    const labels = ['Compare all', 'Only neighbors', 'Find third color'];
+    const labels = ['Compare all', 'Only adjacents', 'Find third color'];
 
     return isDropdown ? (
         <Dropdown

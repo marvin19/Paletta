@@ -2,7 +2,7 @@ import ColorBarModes from '../ColorBars/ColorBarModes';
 
 interface PaletteProps {
     selectedContrast: number;
-    selectedMode: 'all' | 'third' | 'neighbor';
+    selectedMode: 'all' | 'third' | 'adjacent';
 }
 
 const Palette = ({

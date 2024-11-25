@@ -22,15 +22,15 @@ const HowToUseModal = (): JSX.Element => {
             <div className="mb-20">
                 <h3>Modes of operation</h3>
                 <p>
-                    There are three modes of operation: Only neighbors, Compare
+                    There are three modes of operation: Only adjacents, Compare
                     All and Find Third Color
                 </p>
             </div>
             <div className="mb-20">
-                <h4>Only neighbors mode</h4>
+                <h4>Adjacent mode</h4>
                 <p>
                     This mode calculates contrast between each colorbar and its
-                    immediate neighbors. You can cahnge the colors by clicking
+                    immediate adjacents. You can change the colors by clicking
                     on the color input at the bottom of each colorbar
                 </p>
                 <p>
@@ -56,9 +56,9 @@ const HowToUseModal = (): JSX.Element => {
                     adjust colors more precisely
                 </p>
                 <p>
-                    If you discover that the second and the ninth color are
-                    complying, you can stack them together in the neighbors
-                    mode.
+                    By looking at the colors this way, you can discover that
+                    your second and ninth color are complying. You can switch
+                    mode to the Adjacent mode, and stack them side by side.
                 </p>
             </div>
             <div className="mb-20">

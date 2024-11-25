@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import CompareAll from './Modes/CompareAll';
 import ThirdColor from './Modes/ThirdColor';
-import Neighbor from './Modes/Neighbor';
+import Adjacent from './Modes/Adjacent';
 import useColorGeneration from '../../hooks/useColorGeneration';
 
 interface ColorBarModesProps {
     selectedContrast: number;
-    selectedMode: 'all' | 'third' | 'neighbor';
+    selectedMode: 'all' | 'third' | 'adjacent';
 }
 
 const ColorBarModes = ({
@@ -38,8 +38,8 @@ const ColorBarModes = ({
                 removeColorBar={removeColorBar}
             />
         ),
-        neighbor: (
-            <Neighbor
+        adjacent: (
+            <Adjacent
                 colorBars={colorBars}
                 selectedMode={selectedMode}
                 selectedContrast={selectedContrast}

@@ -9,7 +9,7 @@ const defaultColors = [generateNewRandomColor(), generateNewRandomColor()];
 interface ThirdColorProps {
     onColorChange?: (colors: string[]) => void;
     selectedContrast: number;
-    selectedMode?: 'all' | 'third' | 'neighbor';
+    selectedMode?: 'all' | 'third' | 'adjacent';
 }
 
 const ThirdColor: React.FC<ThirdColorProps> = ({

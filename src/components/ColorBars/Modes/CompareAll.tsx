@@ -4,7 +4,7 @@ import { getParentClassForMode } from '../../../utils';
 
 interface CompareAllProps {
     colorBars: string[];
-    selectedMode: 'all' | 'third' | 'neighbor'; // Narrowing down the type
+    selectedMode: 'all' | 'third' | 'adjacent'; // Narrowing down the type
     selectedContrast: number;
     addColorBar: () => void;
     handleColorChange: (index: number, newColor: string) => void;

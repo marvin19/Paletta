@@ -16,7 +16,7 @@ import {
 
 interface HeaderProps {
     setSelectedContrast: (value: number) => void;
-    setSelectedMode: (value: 'all' | 'third' | 'neighbor') => void;
+    setSelectedMode: (value: 'all' | 'third' | 'adjacent') => void;
 }
 
 const Header = ({
