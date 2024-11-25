@@ -304,7 +304,7 @@ label {
 
 /* Media queries */
 /* After 992px, hide the default logo and show the new one */
-@media (max-width: 992px) and (min-width: 768px) {
+@media (max-width: 991px) and (min-width: 768px) {
     .logo {
         display: none;
     }
@@ -372,7 +372,7 @@ label {
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
     .logo {
         display: none;
     }
