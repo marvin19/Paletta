@@ -5,3 +5,4 @@ purgecss.css
 .husky/pre-commit
 yarn.lock
 .lighthouseci/
+todo.md
