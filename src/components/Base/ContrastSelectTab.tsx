@@ -23,6 +23,7 @@ const ContrastSelectTab = ({
     return isDropdown ? (
         <Dropdown
             labels={labels}
+            label="Contrast level:"
             selectedTab={selectedTab}
             handleTabSelect={handleTabSelect}
         />

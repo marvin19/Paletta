@@ -24,6 +24,7 @@ const ContrastModeTab = ({
     return isDropdown ? (
         <Dropdown
             labels={labels}
+            label="Contrast mode:"
             selectedTab={selectedTab}
             handleTabSelect={handleTabSelect}
         />
