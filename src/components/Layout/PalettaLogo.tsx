@@ -8,6 +8,7 @@ const PalettaLogo = (): JSX.Element => {
                 height="29"
                 viewBox="0 0 26 29"
                 fill="none"
+                aria-hidden="true"
             >
                 <rect
                     width="8.07477"
