@@ -1,4 +1,4 @@
-import { useRef, useId } from 'react';
+import { useRef, useId, useState } from 'react';
 
 interface ColorPickerProps {
     color: string;
@@ -6,8 +6,17 @@ interface ColorPickerProps {
 }
 
 const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
+    const [inputValue, setInputValue] = useState(color);
     const colorInputRef = useRef<HTMLInputElement>(null);
     const uniqueId = useId().replace(/:/g, '');
+
+    const handleTextInputChange = (value: string): void => {
+        setInputValue(value);
+        if (/^#[0-9A-Fa-f]{6}$/.test(value)) {
+            // If it's a valid hex color, update the parent state
+            onColorChange(value);
+        }
+    };
 
     return (
         <div className="color-picker-container" style={{ cursor: 'pointer' }}>
@@ -28,7 +37,14 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
                     }}
                 />
             </div>
-            <p>{color}</p>
+            <input
+                className="color-input-text"
+                type="text"
+                value={inputValue}
+                onChange={(e) => {
+                    handleTextInputChange(e.target.value);
+                }}
+            />
         </div>
     );
 };
