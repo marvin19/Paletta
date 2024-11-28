@@ -9,17 +9,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
     const colorInputRef = useRef<HTMLInputElement>(null);
     const uniqueId = useId().replace(/:/g, '');
 
-    // Faking a click on the color input to make the clickable area bigger
-    const handleClick = (): void => {
-        colorInputRef.current?.click();
-    };
-
     return (
-        <div
-            className="color-picker-container"
-            onClick={handleClick}
-            style={{ cursor: 'pointer' }}
-        >
+        <div className="color-picker-container" style={{ cursor: 'pointer' }}>
             <div className="color-picker">
                 <label
                     htmlFor={`color-input-${uniqueId}`}
