@@ -766,7 +766,6 @@ input[type="color"]::-moz-color-swatch {
 }
 
 .color-bar-container.dragging {
-    opacity: 0.8;
     transform: scale(1.05);
     z-index: 10;
 }
