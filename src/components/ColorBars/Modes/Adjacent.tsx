@@ -26,7 +26,8 @@ const Adjacent = ({
         selectedIndex,
         draggedIndex,
         colorBarRefs,
-        handleKeyDown,
+        handleKeyInteraction,
+        handleKeyUp,
         handleDragStart,
         handleDragEnter,
         handleDragEnd,
@@ -56,6 +57,7 @@ const Adjacent = ({
     return (
         <div
             className="color-bars"
+            aria-label="Color bars, drag and drop is not available yet for screen reader users."
             onClick={() => {
                 setSelectedIndex(null);
             }}
@@ -74,7 +76,10 @@ const Adjacent = ({
                     draggable // Enable drag-and-drop
                     ref={(el) => (colorBarRefs.current[index] = el)}
                     onClick={(event) => {
-                        handleClick(index, event);
+                        handleClick(index, event); // Call the original click handler
+                        handleKeyInteraction('Enter', index, () => {
+                            event.preventDefault();
+                        });
                     }}
                     onFocus={(event) => {
                         // Only if div is focused and not the input field or button
@@ -82,8 +87,8 @@ const Adjacent = ({
                             setSelectedIndex(index);
                         }
                     }}
-                    onKeyDown={(event) => {
-                        handleKeyDown(event, index);
+                    onKeyUp={(event) => {
+                        handleKeyUp(event, index);
                     }}
                     onDragStart={() => {
                         handleDragStart(index);

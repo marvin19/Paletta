@@ -10,7 +10,12 @@ interface UseColorBarInteractionsReturnType {
     draggedIndex: number | null;
     visibleContrastBoxIndex: number | null;
     colorBarRefs: React.MutableRefObject<Array<HTMLElement | null>>;
-    handleKeyDown: (event: React.KeyboardEvent, index: number) => void;
+    handleKeyUp: (event: React.KeyboardEvent, index: number) => void;
+    handleKeyInteraction: (
+        key: string,
+        index: number,
+        preventDefault: () => void,
+    ) => void;
     handleDragStart: (index: number) => void;
     handleDragEnter: (index: number) => void;
     handleDragEnd: () => void;
@@ -32,7 +37,7 @@ interface UseColorBarInteractionsReturnType {
  * @returns {number | null} draggedIndex - The index of the color bar currently being dragged, or null if none is being dragged.
  * @returns {number | null} visibleContrastBoxIndex - The index of the color bar for which the contrast box is visible, or null if none is visible.
  * @returns {React.MutableRefObject<HTMLElement[]>} colorBarRefs - A ref object to keep track of color bar elements.
- * @returns {(event: React.KeyboardEvent, index: number) => void} handleKeyDown - Function to handle keyboard events for navigation and selection.
+ * @returns {(event: React.KeyboardEvent, index: number) => void} handleKeyUp - Function to handle keyboard events for navigation and selection.
  * @returns {(index: number) => void} handleDragStart - Function to initiate dragging of a color bar.
  * @returns {(index: number) => void} handleDragEnter - Function to handle entering a drag target (another color bar).
  * @returns {() => void} handleDragEnd - Function to handle the end of a drag action.
@@ -73,8 +78,12 @@ export const useColorBarInteractions = ({
     };
 
     // Handles keyboard event for navigating and selecting color bars.
-    const handleKeyDown = (event: React.KeyboardEvent, index: number): void => {
-        if (event.key === 'ArrowRight' && index < colorBars.length - 1) {
+    const handleKeyInteraction = (
+        key: string,
+        index: number,
+        preventDefault: () => void,
+    ): void => {
+        if (key === 'ArrowRight' && index < colorBars.length - 1) {
             // If color bar is being dragged (with mouse or space bar), swap the colors
             if (draggedIndex !== null && draggedIndex === selectedIndex) {
                 if (selectedIndex !== null) {
@@ -85,7 +94,7 @@ export const useColorBarInteractions = ({
                 // Moves the selection to next color bar. (keyboard nav)
                 setSelectedIndex(index + 1);
             }
-        } else if (event.key === 'ArrowLeft' && index > 0) {
+        } else if (key === 'ArrowLeft' && index > 0) {
             // If color bar is being dragged, swap the colors
             if (draggedIndex !== null && draggedIndex === selectedIndex) {
                 if (selectedIndex !== null) {
@@ -96,14 +105,15 @@ export const useColorBarInteractions = ({
                 // Moves the selection to previous color bar. (keyboard nav)
                 setSelectedIndex(index - 1);
             }
-        } else if (event.key === ' ' && selectedIndex !== null) {
+        } else if ((key === ' ' || key === 'Enter') && selectedIndex !== null) {
+            preventDefault();
             // Handles selection of color bar using space key
             if (draggedIndex === null) {
                 setDraggedIndex(selectedIndex);
             } else {
                 setDraggedIndex(null); // Drop it down
                 setSelectedIndex(null); // Remove focus after dropping
-                (event.currentTarget as HTMLElement).blur();
+                colorBarRefs.current[index]?.blur();
             }
         }
     };
@@ -122,6 +132,12 @@ export const useColorBarInteractions = ({
             setDraggedIndex(index);
             setSelectedIndex(index);
         }
+    };
+
+    const handleKeyUp = (event: React.KeyboardEvent, index: number): void => {
+        handleKeyInteraction(event.key, index, () => {
+            event.preventDefault();
+        });
     };
 
     // Checks if `draggedIndex` is valid. If valid it blurs dragged color bar to remove focus.
@@ -150,7 +166,8 @@ export const useColorBarInteractions = ({
         draggedIndex,
         visibleContrastBoxIndex,
         colorBarRefs,
-        handleKeyDown,
+        handleKeyInteraction,
+        handleKeyUp,
         handleDragStart,
         handleDragEnter,
         handleDragEnd,
