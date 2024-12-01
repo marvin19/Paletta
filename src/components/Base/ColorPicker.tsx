@@ -47,9 +47,6 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
         // On blur, validate the current input and update
         const isCompleteHex = /^#[0-9A-Fa-f]{6}$/.test(inputValue);
         setIsValid(isCompleteHex);
-
-        // Show validation only if the user interacted with the input
-        setShowValidation(true);
     };
 
     const handleKeyPress = (
@@ -64,7 +61,6 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
 
             if (isCompleteHex) {
                 onColorChange(inputValue);
-                console.log(colorInputRef);
 
                 // Remove focus from the input field
                 event.currentTarget.blur();
