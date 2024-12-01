@@ -96,9 +96,13 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
                     </div>
                 </div>
             )}
-
+            <label
+                htmlFor={`color-input-text-${uniqueId}`}
+                className="visually-hidden"
+            />
             <input
                 className="color-input-text"
+                id={`color-input-text-${uniqueId}`}
                 type="text"
                 value={inputValue}
                 onChange={(e) => {
