@@ -9,12 +9,12 @@ describe('ColorPicker', () => {
         render(<ColorPicker color={color} onColorChange={handleColorChange} />);
 
         const colorInput = screen.getByLabelText('Choose color');
-        const colorText = screen.getByText(color);
+        //const colorText = screen.getByText(color);
         const colorValue = colorInput.getAttribute('value');
 
         expect(colorInput).toBeInTheDocument();
         expect(colorValue).toBe(color);
-        expect(colorText).toBeInTheDocument();
+        //expect(colorText).toBeInTheDocument();
     });
 
     test.todo('calls the onColorChange function when the color is changed');

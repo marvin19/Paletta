@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ColorInputText = () => {
+const ColorInputText = (): JSX.Element => {
     return <div>ColorInputText</div>;
 };
 
