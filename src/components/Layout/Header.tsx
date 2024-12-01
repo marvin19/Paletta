@@ -4,6 +4,8 @@ import onlyLogo from '../../assets/highcharts-only-logo.svg';
 import ContrastSelectTab from '../Base/ContrastSelectTab';
 import ContrastModeTab from '../Base/ContrastModeTab';
 import GitHubLink from './GitHubLink';
+import HowToUseModal from './HowToUseModal';
+import Modal from './Modal';
 import PalettaLogo from './PalettaLogo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -14,7 +16,7 @@ import {
 
 interface HeaderProps {
     setSelectedContrast: (value: number) => void;
-    setSelectedMode: (value: 'all' | 'third' | 'neighbor') => void;
+    setSelectedMode: (value: 'all' | 'third' | 'adjacent') => void;
 }
 
 const Header = ({
@@ -22,15 +24,26 @@ const Header = ({
     setSelectedMode,
 }: HeaderProps): JSX.Element => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const toggleMenu = (): void => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const openModal = (): void => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = (): void => {
+        setIsModalOpen(false);
+    };
+
     // Close the menu if the window is resized above 767px
     useEffect(() => {
         const handleResize = (): void => {
-            if (window.innerWidth > 767) {
+            setWindowWidth(window.innerWidth);
+            if (windowWidth > 767) {
                 setIsMenuOpen(false);
             }
         };
@@ -39,10 +52,10 @@ const Header = ({
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    }, [windowWidth]);
 
     return (
-        <div className="banner">
+        <header className="banner">
             <div className="inside-banner">
                 <div className="logo-img">
                     <img src={logo} className="logo" alt="Highcharts logo" />
@@ -55,18 +68,28 @@ const Header = ({
                 <ContrastSelectTab setSelectedContrast={setSelectedContrast} />
                 <ContrastModeTab setSelectedMode={setSelectedMode} />
                 <div className="link-and-logo">
-                    <a href="#" className="icon-wrapper">
+                    <button
+                        onClick={openModal}
+                        className="icon-wrapper"
+                        aria-label="How to use"
+                    >
                         <FontAwesomeIcon
                             icon={faQuestionCircle}
                             style={{ color: '#000000' }}
                         />
-                    </a>
+                    </button>
                     <GitHubLink />
                     <PalettaLogo />
-                    <button className="burger">
+                    <button
+                        className="burger"
+                        aria-label="Open menu"
+                        style={{
+                            display: windowWidth < 768 ? 'block' : 'none',
+                        }}
+                    >
                         <FontAwesomeIcon
                             icon={isMenuOpen ? faX : faBars}
-                            className="hamburger-icon"
+                            className="burger-icon"
                             onClick={toggleMenu}
                             style={{ color: '#000000' }}
                         />
@@ -81,7 +104,10 @@ const Header = ({
                     <ContrastModeTab setSelectedMode={setSelectedMode} />
                 </div>
             )}
-        </div>
+            <Modal isOpen={isModalOpen} onClose={closeModal}>
+                <HowToUseModal />
+            </Modal>
+        </header>
     );
 };
 

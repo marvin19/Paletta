@@ -1,12 +1,12 @@
 import { useState, useCallback } from 'react';
 
-type Mode = 'all' | 'neighbor' | 'third';
+type Mode = 'all' | 'adjacent' | 'third';
 
 const useTabSelection = (
     initialTab: number = 1,
 ): [number, Mode, (index: number) => void] => {
     const [selectedTab, setSelectedTab] = useState(initialTab);
-    const modes: Mode[] = ['all', 'neighbor', 'third'];
+    const modes: Mode[] = ['all', 'adjacent', 'third'];
 
     const handleTabSelect = useCallback((index: number): void => {
         setSelectedTab(index);

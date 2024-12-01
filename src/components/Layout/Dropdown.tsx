@@ -2,12 +2,14 @@ import React from 'react';
 
 interface DropdownProps {
     labels: string[];
+    label: string;
     selectedTab: number;
     handleTabSelect: (index: number) => void;
 }
 
 const Dropdown = ({
     labels,
+    label,
     selectedTab,
     handleTabSelect,
 }: DropdownProps): JSX.Element => {
@@ -19,7 +21,7 @@ const Dropdown = ({
 
     return (
         <div>
-            <label htmlFor="contrast-mode-dropdown">Contrast mode:</label>
+            <label htmlFor="contrast-mode-dropdown">{label}</label>
             <select
                 id="contrast-mode-dropdown"
                 value={selectedTab}

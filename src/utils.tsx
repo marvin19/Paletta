@@ -1,13 +1,33 @@
-// import ColorBox from './components/ColorBox';
+/**
+ *
+ * Constants
+ *
+ */
 
 const WCAG_TRIPLE_AA_TEXT_CONTRAST_THRESHOLD = 7;
 const WCAG_TEXT_CONTRAST_THRESHOLD = 4.5;
 const WCAG_GRAPHIC_CONTRAST_THRESHOLD = 3;
 
+/**
+ *
+ * Get a random number between 0 and 255 to use as RGB value
+ *
+ * @returns number - Random number between 0 and 255
+ */
+
 export const getRgb = (): number => {
     return Math.floor(Math.random() * 256);
 };
 
+/**
+ *
+ * Convert RGB values to hex color
+ *
+ * @param r
+ * @param g
+ * @param b
+ * @returns string - Hex color
+ */
 export const rgbToHex = (r: number, g: number, b: number): string => {
     return (
         '#' +
@@ -20,39 +40,27 @@ export const rgbToHex = (r: number, g: number, b: number): string => {
     );
 };
 
-// Generate an array of random colors at a given length
+/**
+ *
+ * Generate a random hex color.
+ * Used in third mode.
+ *
+ * @returns string - Random hex color
+ *
+ */
 export const generateNewRandomColor = (): string => {
     return rgbToHex(getRgb(), getRgb(), getRgb());
 };
 
-// Render color and contrast boxes together
-// export const renderColorAndContrastBoxes = (
-//     colors: string[],
-//     visibleColors: number,
-//     selectedContrast: number,
-//     paletteType: string,
-// ): JSX.Element[] => {
-//     const elements: JSX.Element[] = [];
-//     for (let i = 0; i < visibleColors; i++) {
-//         elements.push(<ColorBox key={`color-${i}`} color={colors[i]} />);
-
-//         // Add ContrastBox between ColorBoxes if there is a next Color
-//         if (i < visibleColors - 1) {
-//             elements.push(
-//                 <ContrastBoxOld
-//                     key={`contrast-${i}`}
-//                     leftColor={colors[i]}
-//                     rightColor={colors[i + 1]}
-//                     selectedContrast={selectedContrast}
-//                     paletteType={paletteType}
-//                 />,
-//             );
-//         }
-//     }
-//     return elements;
-// };
-
-// Color coming in as hex
+/**
+ *
+ * Calculating the contrast ratio between two colors
+ * Colors are coming in as hex colors.
+ *
+ * @param color1
+ * @param color2
+ * @returns
+ */
 export const calculateContrastRatio = (
     color1: string,
     color2: string,
@@ -70,7 +78,14 @@ export const calculateContrastRatio = (
     return parseFloat(contrast.toFixed(2));
 };
 
-// color coming in as hex
+/**
+ *
+ * Calculating the relative luminance of a color.
+ * Color is coming in as hex
+ *
+ * @param color
+ * @returns
+ */
 export const getLuminance = (color: string): number => {
     // Transforming hex to Rgb
     const rgb = hexToRgb(color);
@@ -88,6 +103,14 @@ export const getLuminance = (color: string): number => {
     return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 };
 
+/**
+ *
+ * Converting a hex color to rgb format
+ *
+ * @param hex
+ * @returns
+ */
+
 export const hexToRgb = (hex: string): any => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
@@ -100,25 +123,13 @@ export const hexToRgb = (hex: string): any => {
         : null;
 };
 
-export const validateColorInput = (value: string): string | null => {
-    if (value.length > 7) {
-        return 'Input cannot exceed 7 characters.';
-    }
-
-    if (value.split('#').length > 2) {
-        return 'Input cannot contain more than one hash symbol.';
-    }
-
-    return null;
-};
-
-export const formatColorInput = (value: string): string => {
-    if (value !== '' && value[0] !== '#') {
-        return '#' + value;
-    }
-    return value;
-};
-
+/**
+ * Find a third color that meets the contrast ratio with the two colors
+ *
+ * @param colors - Array of the two colors
+ * @param selectedContrast - The selected contrast ratio
+ * @returns
+ */
 export const generateThirdContrastColor = (
     colors: string[],
     selectedContrast: number,
@@ -137,9 +148,16 @@ export const generateThirdContrastColor = (
     return null;
 };
 
+/**
+ * Function to check which mode is selected and return the parent class
+ *
+ * @param selectedMode - The selected mode
+ * @returns
+ */
+
 export const getParentClassForMode = (selectedMode?: string): string => {
-    if (selectedMode === 'neighbor') {
-        return 'neighbor';
+    if (selectedMode === 'adjacent') {
+        return 'adjacent';
     } else if (selectedMode === 'all') {
         return 'all';
     } else if (selectedMode === 'third') {
@@ -148,6 +166,14 @@ export const getParentClassForMode = (selectedMode?: string): string => {
     return '';
 };
 
+/**
+ * Using contrastRatio and selectedContrast to calculate the WCAG level
+ * and also if the contrast ratio meets the selected WCAG level
+ *
+ * @param contrastRatio - The contrast ratio between two colors
+ * @param selectedContrast - The selected contrast ratio
+ * @returns { level: string; meetsWCAG: boolean } - The WCAG level and if the contrast ratio meets the selected WCAG level
+ */
 export const getWCAGLevel = (
     contrastRatio: number,
     selectedContrast: number,
@@ -172,7 +198,8 @@ export const getWCAGLevel = (
 };
 
 /**
- * Shuffle algorith to randomize array order
+ * Shuffle algorithm to randomize array order.
+ * Used to give a random order to the color bars when opening the app
  *
  * @param {string[]} array - Array to shuffle
  * @returns {string[]} newArray - Shuffled array
@@ -186,4 +213,41 @@ export const shuffleArray = (array: string[]): string[] => {
         [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
     return newArray;
+};
+
+/* -------------------------- Currently not in use -------------------------- */
+/**
+ *
+ * Validating a hex color that is coming in as a string
+ * Currently not in use
+ *
+ * @param value
+ * @returns
+ */
+
+export const validateColorInput = (value: string): string | null => {
+    if (value.length > 7) {
+        return 'Input cannot exceed 7 characters.';
+    }
+
+    if (value.split('#').length > 2) {
+        return 'Input cannot contain more than one hash symbol.';
+    }
+
+    return null;
+};
+
+/**
+ *
+ * Adding a # to a input field if it doesn't already have one
+ * Currently not in use
+ *
+ * @param value
+ * @returns
+ */
+export const formatColorInput = (value: string): string => {
+    if (value !== '' && value[0] !== '#') {
+        return '#' + value;
+    }
+    return value;
 };

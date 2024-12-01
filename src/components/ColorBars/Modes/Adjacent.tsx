@@ -3,9 +3,9 @@ import ColorBar from '../ColorBar';
 import ContrastBox from '../ContrastBox';
 import { useColorBarInteractions } from '../../../hooks/useColorBarInteractions';
 
-interface NeighborProps {
+interface AdjacentProps {
     colorBars: string[];
-    selectedMode: 'all' | 'third' | 'neighbor';
+    selectedMode: 'all' | 'third' | 'adjacent';
     selectedContrast: number;
     handleColorChange: (index: number, newColor: string) => void;
     removeColorBar: (index: number) => void;
@@ -13,7 +13,7 @@ interface NeighborProps {
     setColorBars: (newColorBars: string[]) => void;
 }
 
-const Neighbor = ({
+const Adjacent = ({
     colorBars,
     selectedMode,
     selectedContrast,
@@ -21,12 +21,13 @@ const Neighbor = ({
     removeColorBar,
     addColorBar,
     setColorBars,
-}: NeighborProps): JSX.Element => {
+}: AdjacentProps): JSX.Element => {
     const {
         selectedIndex,
         draggedIndex,
         colorBarRefs,
-        handleKeyDown,
+        handleKeyInteraction,
+        handleKeyUp,
         handleDragStart,
         handleDragEnter,
         handleDragEnd,
@@ -34,6 +35,17 @@ const Neighbor = ({
     } = useColorBarInteractions({ colorBars, setColorBars });
 
     const handleClick = (index: number, event: React.MouseEvent): void => {
+        // Check if the event originated from the color input or its parent container
+        const isColorPickerClicked =
+            event.target instanceof HTMLElement &&
+            (event.target.tagName === 'INPUT' ||
+                event.target.closest('.color-picker-container'));
+
+        if (isColorPickerClicked !== undefined) {
+            // Prevent the parent click from being triggered when ColorPicker is clicked
+            return;
+        }
+
         if (draggedIndex === null) {
             setSelectedIndex(null); // This removes focus
             (event.currentTarget as HTMLDivElement).blur();
@@ -45,6 +57,7 @@ const Neighbor = ({
     return (
         <div
             className="color-bars"
+            aria-label="Color bars, drag and drop is not available yet for screen reader users."
             onClick={() => {
                 setSelectedIndex(null);
             }}
@@ -63,13 +76,19 @@ const Neighbor = ({
                     draggable // Enable drag-and-drop
                     ref={(el) => (colorBarRefs.current[index] = el)}
                     onClick={(event) => {
-                        handleClick(index, event);
+                        handleClick(index, event); // Call the original click handler
+                        handleKeyInteraction('Enter', index, () => {
+                            event.preventDefault();
+                        });
                     }}
-                    onFocus={() => {
-                        setSelectedIndex(index);
+                    onFocus={(event) => {
+                        // Only if div is focused and not the input field or button
+                        if (event.target === event.currentTarget) {
+                            setSelectedIndex(index);
+                        }
                     }}
-                    onKeyDown={(event) => {
-                        handleKeyDown(event, index);
+                    onKeyUp={(event) => {
+                        handleKeyUp(event, index);
                     }}
                     onDragStart={() => {
                         handleDragStart(index);
@@ -95,12 +114,12 @@ const Neighbor = ({
                         allColors={colorBars}
                         selectedContrast={selectedContrast}
                     />
-                    {/* Only show the contrast box when not dragging and in 'neighbor' mode */}
-                    {/* Show the contrast box unless the current color bar or its previous neighbor should hide it */}
-                    {selectedMode === 'neighbor' &&
-                        index < colorBars.length - 1 && // Ensure no contrast box on the last bar
-                        draggedIndex !== index && // Hide the contrast box for the dragged bar
-                        draggedIndex !== index + 1 && ( // Hide the contrast box for the previous bar (index + 1 is the previous one)
+                    {/* Only show the contrast box when not dragging and in 'adjacent' mode */}
+                    {/* Show the contrast box unless the current color bar or its previous adjacent should hide it */}
+                    {selectedMode === 'adjacent' &&
+                        index < colorBars.length - 1 && ( // Ensure no contrast box on the last bar
+                            /* draggedIndex !== index && // Hide the contrast box for the dragged bar
+                        draggedIndex !== index + 1 && ( */ // Hide the contrast box for the previous bar (index + 1 is the previous one)
                             <ContrastBox
                                 leftColor={colorBars[index]}
                                 rightColor={colorBars[index + 1]}
@@ -113,4 +132,4 @@ const Neighbor = ({
         </div>
     );
 };
-export default Neighbor;
+export default Adjacent;

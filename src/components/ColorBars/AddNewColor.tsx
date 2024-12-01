@@ -9,7 +9,7 @@ interface AddNewColorProps {
 const AddNewColor = ({
     addColorBar,
     colorBars,
-    selectedMode = 'neighbor',
+    selectedMode = 'adjacent',
 }: AddNewColorProps): JSX.Element | null => {
     // Memoize the className to avoic recalcualting on every render
     const buttonClassName = useMemo(() => {

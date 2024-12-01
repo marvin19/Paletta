@@ -1,5 +1,5 @@
 import ContrastText from '../../../src/components/Base/ContrastText';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { getWCAGLevel } from '../../../src/utils';
 
 jest.mock('../../../src/utils', () => ({
@@ -25,16 +25,29 @@ describe('ContrastText', () => {
         );
 
         // Check if the correct contrast ratio is displayed
-        // TODO: Fix correct handling of doubles
-        const contrastText = screen.getByText('4.5:1 (AA)');
+        // TODO: Fix correct handling of doubless
+        // screen.debug();
+
+        // Find parent element
+        const contrastTextContainer = screen
+            .getByText('Text Contrast Ratio')
+            .closest('.contrast-text-container');
+        expect(contrastTextContainer).toBeInTheDocument();
+
+        // Find spesific contrast text element
+        const contrastText = within(contrastTextContainer as any).getByText(
+            '4.5:1',
+            {
+                exact: false,
+            },
+        );
         expect(contrastText).toBeInTheDocument();
 
-        // Check if the label is displayed
-        const label = screen.getByText('Text Contrast Ratio');
-        expect(label).toBeInTheDocument();
+        const levelSpan = within(contrastText).getByText('(AA)');
+        expect(levelSpan).toBeInTheDocument();
     });
 
-    it('applies the correct text color to botn the contrast ratio and label', () => {
+    it('applies the correct text color to both the contrast ratio and label', () => {
         // Mock the contrast ratio calculation
         (getWCAGLevel as jest.Mock).mockReturnValue({ level: 'AAA' });
 
@@ -47,8 +60,19 @@ describe('ContrastText', () => {
             />,
         );
 
+        // Find parent element
+        const contrastTextContainer = screen
+            .getByText('Text Contrast Ratio')
+            .closest('.contrast-text-container');
+        expect(contrastTextContainer).toBeInTheDocument();
+
         // Check if the contrast ratio text is styled with correct textColor
-        const contrastText = screen.getByText('3:1 (AAA)');
+        const contrastText = within(contrastTextContainer as any).getByText(
+            '3:1',
+            {
+                exact: false,
+            },
+        );
         expect(contrastText).toHaveStyle('color: #ff0000');
 
         // Check if the label "Text Contrast Ratio" is styled with correct textColor

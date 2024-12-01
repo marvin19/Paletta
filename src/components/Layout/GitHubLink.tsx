@@ -1,7 +1,7 @@
 const GitHubLink = (): JSX.Element => {
     return (
         <a
-            href="https://github.com/marvin19/AccessiPalette"
+            href="https://github.com/marvin19/Paletta"
             aria-label="GitHub repository"
             className="icon-wrapper"
         >

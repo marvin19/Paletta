@@ -58,6 +58,16 @@ const ColorBarContent = ({
                         onColorChange={handleColorChange}
                     />
                 )}
+                {isThirdContrastColor === true && (
+                    <div style={{ width: '100%' }}>
+                        <p
+                            className="contrast-text"
+                            style={{ color: textColor, margin: 'auto 0' }}
+                        >
+                            {color}
+                        </p>
+                    </div>
+                )}
             </div>
             {selectedMode !== 'third' && lengthOfColors > 2 && (
                 <RemoveColorButton

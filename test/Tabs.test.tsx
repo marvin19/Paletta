@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Tabs from '../src/components/Layout/Tabs';
+import Tabs from '../src/components/Layout/TabPanel';
 import { useState } from 'react';
 
 describe('Tabs component', () => {

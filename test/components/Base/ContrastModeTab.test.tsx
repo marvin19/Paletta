@@ -8,7 +8,7 @@ jest.mock('../../../src/hooks/useTabSelection');
 
 describe('ContrastModeTab', () => {
     const mockSetSelectedMode = jest.fn();
-    const labels = ['Compare all', 'Only neighbors', 'Find third color'];
+    const labels = ['Compare all', 'Adjacent colors', 'Find third color'];
 
     beforeEach(() => {
         jest.clearAllMocks();
@@ -19,7 +19,7 @@ describe('ContrastModeTab', () => {
         (useIsDropdown as jest.Mock).mockReturnValue(true);
         (useTabSelection as jest.Mock).mockReturnValue([
             1,
-            'neighbor',
+            'adjacent',
             jest.fn(),
         ]);
 
@@ -35,7 +35,7 @@ describe('ContrastModeTab', () => {
         (useIsDropdown as jest.Mock).mockReturnValue(false);
         (useTabSelection as jest.Mock).mockReturnValue([
             1,
-            'neighbor',
+            'adjacent',
             jest.fn(),
         ]);
 
@@ -60,14 +60,14 @@ describe('ContrastModeTab', () => {
         (useIsDropdown as jest.Mock).mockReturnValue(false);
         (useTabSelection as jest.Mock).mockReturnValue([
             1,
-            'neighbor',
+            'adjacent',
             handleTabSelect,
         ]);
 
         render(<ContrastModeTab setSelectedMode={mockSetSelectedMode} />);
 
         // Check that setSelectedMode is called with the correct mode
-        expect(mockSetSelectedMode).toHaveBeenCalledWith('neighbor');
+        expect(mockSetSelectedMode).toHaveBeenCalledWith('adjacent');
     });
 
     it('updates selectedMode when a tab is clicked', () => {
@@ -82,7 +82,7 @@ describe('ContrastModeTab', () => {
         render(<ContrastModeTab setSelectedMode={mockSetSelectedMode} />);
 
         // Click on the second tab
-        const secondTab = screen.getByText('Only neighbors');
+        const secondTab = screen.getByText('Adjacent colors');
         fireEvent.click(secondTab);
 
         // Ensure the tab select function is called

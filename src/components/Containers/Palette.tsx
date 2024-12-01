@@ -2,7 +2,7 @@ import ColorBarModes from '../ColorBars/ColorBarModes';
 
 interface PaletteProps {
     selectedContrast: number;
-    selectedMode: 'all' | 'third' | 'neighbor';
+    selectedMode: 'all' | 'third' | 'adjacent';
 }
 
 const Palette = ({
@@ -10,12 +10,14 @@ const Palette = ({
     selectedMode,
 }: PaletteProps): JSX.Element => {
     return (
-        <div className="palette">
-            <ColorBarModes
-                selectedContrast={selectedContrast}
-                selectedMode={selectedMode}
-            />
-        </div>
+        <main>
+            <div className="palette" id="content">
+                <ColorBarModes
+                    selectedContrast={selectedContrast}
+                    selectedMode={selectedMode}
+                />
+            </div>
+        </main>
     );
 };
 

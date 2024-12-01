@@ -4,7 +4,7 @@ import ColorBarContent from './ColorBarContent';
 
 interface ColorBarProps {
     color: string;
-    selectedMode?: 'all' | 'third' | 'neighbor';
+    selectedMode?: 'all' | 'third' | 'adjacent';
     allColors?: string[];
     selectedContrast?: number;
     removeColorBar?: () => void;

@@ -9,7 +9,7 @@ const defaultColors = [generateNewRandomColor(), generateNewRandomColor()];
 interface ThirdColorProps {
     onColorChange?: (colors: string[]) => void;
     selectedContrast: number;
-    selectedMode?: 'all' | 'third' | 'neighbor';
+    selectedMode?: 'all' | 'third' | 'adjacent';
 }
 
 const ThirdColor: React.FC<ThirdColorProps> = ({
@@ -55,7 +55,6 @@ const ThirdColor: React.FC<ThirdColorProps> = ({
                 )}
             </div>
             <div className="color-bar-container third-contrast-color">
-                {/* TODO: Implement text color rendering for contrast in this mode as well */}
                 {buttonClicked ? (
                     contrastColor !== null ? (
                         <>
