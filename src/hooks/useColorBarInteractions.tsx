@@ -83,6 +83,10 @@ export const useColorBarInteractions = ({
         index: number,
         preventDefault: () => void,
     ): void => {
+        // Avoids arrow key navigation if input field is focused
+        if (document.activeElement?.tagName === 'INPUT') {
+            return;
+        }
         if (key === 'ArrowRight' && index < colorBars.length - 1) {
             // If color bar is being dragged (with mouse or space bar), swap the colors
             if (draggedIndex !== null && draggedIndex === selectedIndex) {

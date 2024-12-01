@@ -52,6 +52,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
     const handleKeyPress = (
         event: React.KeyboardEvent<HTMLInputElement>,
     ): void => {
+        if (event.target === colorInputRef.current) {
+            return;
+        }
+
         if (event.key === 'Enter') {
             const isCompleteHex = /^#[0-9A-Fa-f]{6}$/.test(inputValue);
             setIsValid(isCompleteHex);
