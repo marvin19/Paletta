@@ -16,6 +16,8 @@ const ContrastBox = ({
     const contrastRatio = calculateContrastRatio(leftColor, rightColor);
     const { meetsWCAG, level } = getWCAGLevel(contrastRatio, selectedContrast);
 
+    const contrastRatioFixed = `${contrastRatio.toFixed(2)}:1(${level})`;
+
     return (
         <div className="checker">
             <div className="contrast-ratio-box-text">
@@ -24,7 +26,12 @@ const ContrastBox = ({
                     style={{ color: '#000000' }}
                 />
                 <WCAGCheck meetsWCAG={meetsWCAG} fontSize="1.0rem" />
-                <p> {`${contrastRatio.toFixed(2)}:1(${level})`}</p>
+                <p
+                    aria-label={`Contrast level between ${leftColor} and ${rightColor} is ${contrastRatioFixed}`}
+                >
+                    {' '}
+                    {`${contrastRatioFixed}`}
+                </p>
                 <FontAwesomeIcon
                     icon={faCaretRight}
                     style={{ color: '#000000' }}
