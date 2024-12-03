@@ -87,16 +87,21 @@ export const useColorBarInteractions = ({
         if (document.activeElement?.tagName === 'INPUT') {
             return;
         }
+
         if (key === 'ArrowRight' && index < colorBars.length - 1) {
             // If color bar is being dragged (with mouse or space bar), swap the colors
             if (draggedIndex !== null && draggedIndex === selectedIndex) {
                 if (selectedIndex !== null) {
                     swapColors(selectedIndex, selectedIndex + 1);
                     setSelectedIndex(selectedIndex + 1);
+                    // Move focus to the newly swapped color bar
+                    colorBarRefs.current[selectedIndex + 1]?.focus();
                 }
             } else {
                 // Moves the selection to next color bar. (keyboard nav)
                 setSelectedIndex(index + 1);
+                // Move focus to the next color bar
+                colorBarRefs.current[index + 1]?.focus();
             }
         } else if (key === 'ArrowLeft' && index > 0) {
             // If color bar is being dragged, swap the colors
@@ -104,10 +109,14 @@ export const useColorBarInteractions = ({
                 if (selectedIndex !== null) {
                     swapColors(selectedIndex, selectedIndex - 1);
                     setSelectedIndex(selectedIndex - 1);
+                    // Move focus to the newly swapped color bar
+                    colorBarRefs.current[selectedIndex - 1]?.focus();
                 }
             } else {
                 // Moves the selection to previous color bar. (keyboard nav)
                 setSelectedIndex(index - 1);
+                // Move focus to the previous color bar
+                colorBarRefs.current[index - 1]?.focus();
             }
         } else if ((key === ' ' || key === 'Enter') && selectedIndex !== null) {
             preventDefault();
@@ -116,8 +125,7 @@ export const useColorBarInteractions = ({
                 setDraggedIndex(selectedIndex);
             } else {
                 setDraggedIndex(null); // Drop it down
-                setSelectedIndex(null); // Remove focus after dropping
-                colorBarRefs.current[index]?.blur();
+                setSelectedIndex(selectedIndex); // Keep focus after dropping (easier for AT)
             }
         }
     };

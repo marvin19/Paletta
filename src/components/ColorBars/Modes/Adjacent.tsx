@@ -27,7 +27,6 @@ const Adjacent = ({
         draggedIndex,
         colorBarRefs,
         handleKeyInteraction,
-        handleKeyUp,
         handleDragStart,
         handleDragEnter,
         handleDragEnd,
@@ -57,11 +56,24 @@ const Adjacent = ({
     return (
         <div
             className="color-bars"
-            aria-label="Color bars, drag and drop is not available yet for screen reader users."
+            aria-describedby="dnd-description"
             onClick={() => {
                 setSelectedIndex(null);
             }}
         >
+            <div style={{ display: 'none' }} id="dnd-description">
+                <div
+                    style={{ display: 'none' }}
+                    id="colorBarLiveRegion"
+                    aria-live="polite"
+                ></div>
+                <p>
+                    You can drag and drop the color bars to change their order
+                    to calculate contrast between them. Use the arrow keys to
+                    navigate between the color bars and the enter key to pick up
+                    a color bar and to put it down in a new position.
+                </p>
+            </div>
             {colorBars.map((color, index) => (
                 <div
                     key={index}
@@ -88,7 +100,11 @@ const Adjacent = ({
                         }
                     }}
                     onKeyUp={(event) => {
-                        handleKeyUp(event, index);
+                        handleKeyInteraction(
+                            event.key,
+                            index,
+                            event.preventDefault.bind(event),
+                        );
                     }}
                     onDragStart={() => {
                         handleDragStart(index);
