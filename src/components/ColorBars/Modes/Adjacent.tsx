@@ -33,6 +33,12 @@ const Adjacent = ({
         setSelectedIndex,
     } = useColorBarInteractions({ colorBars, setColorBars });
 
+    const howToUse =
+        'You can drag and drop the color bars to change their order ' +
+        'to calculate contrast between them. Use the arrow keys to ' +
+        'navigate between the color bars and the enter key to pick up ' +
+        'a color bar and to put it down in a new position.';
+
     const handleClick = (index: number, event: React.MouseEvent): void => {
         // Check if the event originated from the color input or its parent container
         const isColorPickerClicked =
@@ -56,24 +62,16 @@ const Adjacent = ({
     return (
         <div
             className="color-bars"
-            aria-describedby="dnd-description"
+            aria-label={howToUse}
             onClick={() => {
                 setSelectedIndex(null);
             }}
         >
-            <div style={{ display: 'none' }} id="dnd-description">
-                <div
-                    style={{ display: 'none' }}
-                    id="colorBarLiveRegion"
-                    aria-live="polite"
-                ></div>
-                <p>
-                    You can drag and drop the color bars to change their order
-                    to calculate contrast between them. Use the arrow keys to
-                    navigate between the color bars and the enter key to pick up
-                    a color bar and to put it down in a new position.
-                </p>
-            </div>
+            <div
+                style={{ display: 'none' }}
+                id="colorBarLiveRegion"
+                aria-live="polite"
+            ></div>
             {colorBars.map((color, index) => (
                 <div
                     key={index}
@@ -84,7 +82,7 @@ const Adjacent = ({
                     }`}
                     tabIndex={0}
                     role="button"
-                    aria-label={`Draggable color bar with color ${color}`}
+                    aria-label={`Draggable color bar with color ${color}, press Enter to start dragging`}
                     draggable // Enable drag-and-drop
                     ref={(el) => (colorBarRefs.current[index] = el)}
                     onClick={(event) => {
