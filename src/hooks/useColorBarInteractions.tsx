@@ -9,7 +9,7 @@ interface UseColorBarInteractionsReturnType {
     selectedIndex: number | null;
     draggedIndex: number | null;
     visibleContrastBoxIndex: number | null;
-    colorBarRefs: React.MutableRefObject<Array<HTMLElement | null>>;
+    colorBarRefs: React.MutableRefObject<Array<HTMLDivElement | null>>;
     handleKeyUp: (event: React.KeyboardEvent, index: number) => void;
     handleKeyInteraction: (
         key: string,
@@ -23,6 +23,7 @@ interface UseColorBarInteractionsReturnType {
     setVisibleContrastBoxIndex: React.Dispatch<
         React.SetStateAction<number | null>
     >;
+    liveRegionRef: React.MutableRefObject<HTMLDivElement | null>;
 }
 
 /**
@@ -54,7 +55,10 @@ export const useColorBarInteractions = ({
     const [visibleContrastBoxIndex, setVisibleContrastBoxIndex] = useState<
         number | null
     >(null); // Index of the color bar for which contrast box is visible
-    const colorBarRefs = useRef<Array<HTMLElement | null>>([]); // Keeps track of references to the DOM elements of the color bars
+    const colorBarRefs = useRef<Array<HTMLDivElement | null>>([]); // Keeps track of references to the DOM elements of the color bars
+    const liveRegionRef = useRef<HTMLDivElement | null>(null); // Reference to the live region element
+    const messageQueue = useRef<string[]>([]); // Queue of messages to be read by screen readers
+    const isAnnouncing = useRef(false); // Flag to prevent multiple announcements
 
     // Runs when the `selectedIndex` changes.
     useEffect(() => {
@@ -63,6 +67,29 @@ export const useColorBarInteractions = ({
             colorBarRefs.current[selectedIndex]?.focus();
         }
     }, [selectedIndex]);
+
+    const processQueue = (): void => {
+        if (!isAnnouncing.current && messageQueue.current.length > 0) {
+            const message = messageQueue.current.shift();
+            if (liveRegionRef.current !== null && message !== undefined) {
+                liveRegionRef.current.textContent = message;
+            }
+            isAnnouncing.current = true;
+
+            setTimeout(() => {
+                if (liveRegionRef.current !== null) {
+                    liveRegionRef.current.textContent = ''; // Clear live region
+                }
+                isAnnouncing.current = false;
+                processQueue();
+            }, 2000); // Clear the message after 1 second
+        }
+    };
+
+    const setLiveRegionMessage = (message: string): void => {
+        messageQueue.current.push(message);
+        processQueue();
+    };
 
     // Swaps two color bars in the `colorBars` array
     const swapColors = (fromIndex: number, toIndex: number): void => {
@@ -83,7 +110,7 @@ export const useColorBarInteractions = ({
         index: number,
         preventDefault: () => void,
     ): void => {
-        // Avoids arrow key navigation if input field is focused
+        // Avoids arrow key navigation if input field is focused to prevent conflicts
         if (document.activeElement?.tagName === 'INPUT') {
             return;
         }
@@ -94,12 +121,16 @@ export const useColorBarInteractions = ({
                 if (selectedIndex !== null) {
                     swapColors(selectedIndex, selectedIndex + 1);
                     setSelectedIndex(selectedIndex + 1);
+                    setLiveRegionMessage(
+                        `is moved to position ${selectedIndex + 2}.`,
+                    );
                     // Move focus to the newly swapped color bar
                     colorBarRefs.current[selectedIndex + 1]?.focus();
                 }
             } else {
                 // Moves the selection to next color bar. (keyboard nav)
                 setSelectedIndex(index + 1);
+                setLiveRegionMessage(`Press Enter to start dragging.`);
                 // Move focus to the next color bar
                 colorBarRefs.current[index + 1]?.focus();
             }
@@ -109,12 +140,16 @@ export const useColorBarInteractions = ({
                 if (selectedIndex !== null) {
                     swapColors(selectedIndex, selectedIndex - 1);
                     setSelectedIndex(selectedIndex - 1);
+                    setLiveRegionMessage(
+                        `is moved to position ${selectedIndex}.`,
+                    );
                     // Move focus to the newly swapped color bar
                     colorBarRefs.current[selectedIndex - 1]?.focus();
                 }
             } else {
                 // Moves the selection to previous color bar. (keyboard nav)
                 setSelectedIndex(index - 1);
+                setLiveRegionMessage(`Press Enter to start dragging.`);
                 // Move focus to the previous color bar
                 colorBarRefs.current[index - 1]?.focus();
             }
@@ -123,9 +158,15 @@ export const useColorBarInteractions = ({
             // Handles selection of color bar using space key
             if (draggedIndex === null) {
                 setDraggedIndex(selectedIndex);
+                setLiveRegionMessage(
+                    `Color bar with the color ${colorBars[selectedIndex]}is picked up at position ${selectedIndex + 1}.`,
+                );
             } else {
                 setDraggedIndex(null); // Drop it down
                 setSelectedIndex(selectedIndex); // Keep focus after dropping (easier for AT)
+                setLiveRegionMessage(
+                    `Color bar with the color ${colorBars[selectedIndex]} is dropped down at position ${selectedIndex + 1}.`,
+                );
             }
         }
     };
@@ -185,5 +226,6 @@ export const useColorBarInteractions = ({
         handleDragEnd,
         setSelectedIndex,
         setVisibleContrastBoxIndex,
+        liveRegionRef,
     };
 };
