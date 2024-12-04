@@ -8,10 +8,9 @@ Please note that Paletta is currently a work in progress. While I strive to crea
 
 ## Features
 
--   Interactive UI for selecting and comparing colors.
+-   Interactive UI for selecting and comparing colors in different ways.
 -   Real-time calculation of contrast ratios.
--   ~~Supports WCAG contrast standards for text and graphical elements.~~ Work in progress!
--   ~~User-friendly interface built with React.~~ Work in progress!
+-   User-friendly interface built with React.
 
 ## Installation and running the app
 
@@ -43,7 +42,7 @@ npm run dev
 
 ## Usage
 
-Simply select colors using the provided tools, and the application will automatically calculate and display the contrast ratio.
+Simply select colors using the provided tools, and the application will automatically calculate and display the contrast ratio. For more information, press the question mark button when running the project.
 
 ## Contributing
 
