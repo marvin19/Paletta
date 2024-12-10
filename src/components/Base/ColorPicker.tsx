@@ -1,4 +1,4 @@
-import { useRef, useId, useState } from 'react';
+import { useRef, useId, useState, useEffect } from 'react';
 import WCAGCheck from '../ColorBars/WCAGCheck';
 
 interface ColorPickerProps {
@@ -12,6 +12,11 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
     const [showValidation, setShowValidation] = useState(false);
     const colorInputRef = useRef<HTMLInputElement>(null);
     const uniqueId = useId().replace(/:/g, '');
+
+    useEffect(() => {
+        // Update text input when color prop changes
+        setInputValue(color);
+    }, [color]);
 
     const handleTextInputChange = (value: string): void => {
         // Ensure the value starts with '#'
@@ -43,10 +48,20 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
         }
     };
 
+    const handleColorPickerChange = (newColor: string): void => {
+        setInputValue(newColor);
+        onColorChange(newColor);
+        setShowValidation(false); // Hide WCAGCheck when changing color picker
+    };
+
     const handleBlur = (): void => {
         // On blur, validate the current input and update
         const isCompleteHex = /^#[0-9A-Fa-f]{6}$/.test(inputValue);
         setIsValid(isCompleteHex);
+
+        if (!isCompleteHex) {
+            setInputValue(color);
+        }
     };
 
     const handleKeyPress = (
@@ -91,10 +106,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onColorChange }) => {
                             type="color"
                             value={color}
                             onChange={(e) => {
-                                const newColor = e.target.value;
-                                onColorChange(newColor);
-                                setInputValue(newColor);
-                                setShowValidation(false); // Hide WCAGCheck when changing color picker
+                                handleColorPickerChange(e.target.value);
                             }}
                         />
                     </div>
