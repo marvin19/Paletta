@@ -130,6 +130,7 @@ a#skip-link:not(:focus):not(:focus-within) {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-bottom: 1.25rem;
 }
 
 .info-text {
@@ -137,6 +138,11 @@ a#skip-link:not(:focus):not(:focus-within) {
     font-size: 0.8rem;
     line-height: 130%;
     color: #75738c;
+    margin-bottom: 1.25rem;
+}
+
+.info-text p {
+    margin-bottom: 0.625rem;
 }
 
 /** Old header styles */
