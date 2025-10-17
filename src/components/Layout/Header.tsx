@@ -1,62 +1,70 @@
-import { useEffect, useState } from 'react';
-import logo from '../../assets/highcharts-logo.svg';
-import onlyLogo from '../../assets/highcharts-only-logo.svg';
-import ContrastSelectTab from '../Base/ContrastSelectTab';
-import ContrastModeTab from '../Base/ContrastModeTab';
+// import { useState } from 'react';
+// import logo from '../../assets/highcharts-logo.svg';
+// import onlyLogo from '../../assets/highcharts-only-logo.svg';
+// import ContrastSelectTab from '../Base/ContrastSelectTab';
+// import ContrastModeTab from '../Base/ContrastModeTab';
 import GitHubLink from './GitHubLink';
-import HowToUseModal from './HowToUseModal';
-import Modal from './Modal';
+import InfoText from '../Base/InfoText';
+// import HowToUseModal from './HowToUseModal';
+// import Modal from './Modal';
 import PalettaLogo from './PalettaLogo';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faQuestionCircle,
-    faBars,
-    faX,
-} from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import {
+//     faQuestionCircle,
+//     faBars,
+//     faX,
+// } from '@fortawesome/free-solid-svg-icons';
 
 interface HeaderProps {
     setSelectedContrast: (value: number) => void;
     setSelectedMode: (value: 'all' | 'third' | 'adjacent') => void;
 }
 
-const Header = ({
-    setSelectedContrast,
-    setSelectedMode,
-}: HeaderProps): JSX.Element => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+const Header = (
+    {
+        // setSelectedContrast,
+        // setSelectedMode,
+    }: HeaderProps,
+): JSX.Element => {
+    // const [isMenuOpen, setIsMenuOpen] = useState(false);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    const toggleMenu = (): void => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    // const toggleMenu = (): void => {
+    //     setIsMenuOpen(!isMenuOpen);
+    // };
 
-    const openModal = (): void => {
-        setIsModalOpen(true);
-    };
+    // const openModal = (): void => {
+    //     setIsModalOpen(true);
+    // };
 
-    const closeModal = (): void => {
-        setIsModalOpen(false);
-    };
+    // const closeModal = (): void => {
+    //     setIsModalOpen(false);
+    // };
 
     // Close the menu if the window is resized above 767px
-    useEffect(() => {
-        const handleResize = (): void => {
-            setWindowWidth(window.innerWidth);
-            if (windowWidth > 767) {
-                setIsMenuOpen(false);
-            }
-        };
+    // useEffect(() => {
+    //     const handleResize = (): void => {
+    //         setWindowWidth(window.innerWidth);
+    //         if (windowWidth > 767) {
+    //             setIsMenuOpen(false);
+    //         }
+    //     };
 
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [windowWidth]);
+    //     window.addEventListener('resize', handleResize);
+    //     return () => {
+    //         window.removeEventListener('resize', handleResize);
+    //     };
+    // }, [windowWidth]);
 
     return (
         <header className="banner">
-            <div className="inside-banner">
+            <div className="header-top">
+                <PalettaLogo />
+                <GitHubLink />
+            </div>
+            <InfoText />
+            {/* <div className="inside-banner">
                 <div className="logo-img">
                     <img src={logo} className="logo" alt="Highcharts logo" />
                     <img
@@ -78,8 +86,7 @@ const Header = ({
                             style={{ color: '#000000' }}
                         />
                     </button>
-                    <GitHubLink />
-                    <PalettaLogo />
+
                     <button
                         className="burger"
                         aria-label="Open menu"
@@ -106,7 +113,7 @@ const Header = ({
             )}
             <Modal isOpen={isModalOpen} onClose={closeModal}>
                 <HowToUseModal />
-            </Modal>
+            </Modal> */}
         </header>
     );
 };
