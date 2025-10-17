@@ -20,7 +20,6 @@ const App: React.FC = (): React.ReactElement | null => {
             </div>
             {/* Right content area (75% width) */}
             <main id="main-content" className="app-main">
-                <h1>Test</h1>
                 {/* <Palette
                     selectedContrast={selectedContrast}
                     selectedMode={selectedMode}

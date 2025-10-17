@@ -127,16 +127,13 @@ a#skip-link:not(:focus):not(:focus-within) {
 /************ Header ****************/
 .banner {
     display: flex;
-    padding-top: 1.125rem;
-    padding-left: 1.125rem;
-    padding-right: 1.125rem;
-    padding-bottom: 2ch;
-    flex-direction: column;
-    justify-content: center;
+    padding: 1.875rem; /* 30px on all sides */
+    flex-direction: column; /* vertical flow */
+    justify-content: space-between; /* distribute vertically */
     align-items: flex-start;
     gap: 0.625rem;
     align-self: stretch;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .inside-banner {
@@ -445,11 +442,15 @@ label {
     max-width: 40rem;
     height: 100vh;
     overflow-y: auto;
-    border-right: 1px solid #e5e7eb;
     background: #ffffff;
     position: sticky;
     top: 0;
     align-self: flex-start;
+    padding: 1.875rem; /* inner spacing */
+    margin: 1.875rem; /* outer spacing from app-container */
+    border: 1px solid #e5e7eb; /* full border */
+    border-radius: 8px; /* rounded corners */
+    overflow: hidden; /* clip children to radius */
 }
 
 .app-main {
